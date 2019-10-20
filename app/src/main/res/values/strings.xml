@@ -3,7 +3,6 @@
     <string name="random_joke">random joke</string>
     <string name="upvotes">upvotes: %d</string>
     <string name="downvotes">downvotes: %d</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_tab">Home</string>
+    <string name="favourites_tab">Favourites</string>
 </resources>

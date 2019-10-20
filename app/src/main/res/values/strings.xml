@@ -5,4 +5,7 @@
     <string name="downvotes">downvotes: %d</string>
     <string name="home_tab">Home</string>
     <string name="favourites_tab">Favourites</string>
+    <string name="favourite_jokes_SP" translatable="false">favouriteJokesSP</string>
+    <string name="favourite_jokes_SP_key" translatable="false">favouriteJokesSPKey</string>
+
 </resources>

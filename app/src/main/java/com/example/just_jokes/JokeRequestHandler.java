@@ -89,8 +89,8 @@ class JokeRequestHandler {
         favouriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final SharedPreferences sharedPreferences = context.getSharedPreferences("favourites", Context.MODE_PRIVATE);
-                final String favouriteJokesSPKey = "favouriteJokes";
+                final SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.favourite_jokes_SP), Context.MODE_PRIVATE);
+                final String favouriteJokesSPKey = context.getString(R.string.favourite_jokes_SP_key);
                 final Set<String> favouriteJokes = new HashSet<>(sharedPreferences.getStringSet(favouriteJokesSPKey, new HashSet<String>()));
                 favouriteJokes.add(jokeId);
                 final SharedPreferences.Editor editor = sharedPreferences.edit();

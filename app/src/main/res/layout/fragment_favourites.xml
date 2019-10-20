@@ -6,6 +6,7 @@
     tools:context=".FavouritesFragment">
 
     <ListView
+        android:id="@+id/favourite_jokes_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

@@ -1,34 +1,24 @@
 package com.example.just_jokes;
 
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class HomeFragment extends Fragment {
 
-
     public HomeFragment() {
-        // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
@@ -42,11 +32,13 @@ public class HomeFragment extends Fragment {
         final Button randomJokeButton = view.findViewById(R.id.random_joke_button);
         final Button upvoteButton = view.findViewById(R.id.upvote_button);
         final Button downvoteButton = view.findViewById(R.id.downvote_button);
+        final Button favouriteButton = view.findViewById(R.id.favourite_button);
 
-        JokeRequestHandler jokeRequestHandler = new JokeRequestHandler(this.getContext(),randomJokeTextView,upvotesTextView,downvotesTextView);
+        JokeRequestHandler jokeRequestHandler = new JokeRequestHandler(this.getContext(), randomJokeTextView, upvotesTextView, downvotesTextView);
         jokeRequestHandler.getRandomJoke();
         jokeRequestHandler.setRandomJokeButtonOnClickListener(randomJokeButton);
         jokeRequestHandler.setUpvoteButtonOnClickListener(upvoteButton);
         jokeRequestHandler.setDownvoteButtonOnClickListener(downvoteButton);
+        jokeRequestHandler.setFavouriteButtonOnClickListener(favouriteButton);
     }
 }

@@ -1,9 +1,13 @@
 package com.example.just_jokes;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,7 +30,6 @@ class JokeRequestHandler {
         this.randomJokeTextView = randomJokeTextView;
         this.upvotesTextView = upvotesTextView;
         this.downvotesTextView = downvotesTextView;
-
     }
 
     private void setUpJokeService() {
@@ -78,6 +81,21 @@ class JokeRequestHandler {
             @Override
             public void onClick(View v) {
                 jokeService.downvoteJoke(jokeId).enqueue(getJokeDtoCallback());
+            }
+        });
+    }
+
+    void setFavouriteButtonOnClickListener(Button favouriteButton) {
+        favouriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final SharedPreferences sharedPreferences = context.getSharedPreferences("favourites", Context.MODE_PRIVATE);
+                final String favouriteJokesSPKey = "favouriteJokes";
+                final Set<String> favouriteJokes = new HashSet<>(sharedPreferences.getStringSet(favouriteJokesSPKey, new HashSet<String>()));
+                favouriteJokes.add(jokeId);
+                final SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putStringSet(favouriteJokesSPKey, favouriteJokes);
+                editor.apply();
             }
         });
     }

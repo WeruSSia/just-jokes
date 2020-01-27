@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,6 +26,7 @@ class JokeRequestHandler {
     private TextView randomJokeTextView;
     private TextView upvotesTextView;
     private TextView downvotesTextView;
+    private TextView favouriteJokeTextView;
 
     public JokeRequestHandler(Context context, TextView randomJokeTextView, TextView upvotesTextView, TextView downvotesTextView) {
         setUpJokeService();
@@ -32,6 +34,12 @@ class JokeRequestHandler {
         this.randomJokeTextView = randomJokeTextView;
         this.upvotesTextView = upvotesTextView;
         this.downvotesTextView = downvotesTextView;
+    }
+
+    public JokeRequestHandler(Context context, TextView favouriteJokeTextView){
+        setUpJokeService();
+        this.context=context;
+        this.favouriteJokeTextView =favouriteJokeTextView;
     }
 
     public JokeRequestHandler(){
@@ -110,22 +118,28 @@ class JokeRequestHandler {
         jokeService.getRandomJoke().enqueue(getJokeDtoCallback());
     }
 
-
-    List<JokeDto> getJokesList(Set<String> jokeIds){
-        final List<JokeDto> jokes = new ArrayList<>();
-        for(String jokeId:jokeIds) {
+    void getJokesList(final Set<String> jokeIds, final JokesCallback jokesCallback){
+        final Set<JokeDto> jokes = new HashSet<>();
+        final AtomicInteger failureCounter = new AtomicInteger();
+        failureCounter.set(0);
+        for(final String jokeId:jokeIds) {
             jokeService.getJokeById(jokeId).enqueue(new Callback<JokeDto>() {
                 @Override
                 public void onResponse(Call<JokeDto> call, Response<JokeDto> response) {
                     jokes.add(response.body());
+                    if(jokeIds.size()==jokes.size() + failureCounter.get()){
+                        jokesCallback.onResponse(jokes,failureCounter.get());
+                    }
                 }
 
                 @Override
                 public void onFailure(Call<JokeDto> call, Throwable t) {
-
+                    failureCounter.incrementAndGet();
+                    if(jokeIds.size()==jokes.size()+failureCounter.get()){
+                        jokesCallback.onResponse(jokes,failureCounter.get());
+                    }
                 }
             });
         }
-        return jokes;
     }
 }

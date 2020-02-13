@@ -31,10 +31,10 @@ public class HomeFragment extends Fragment {
         final TextView upvotesTextView = view.findViewById(R.id.upvotes_text_view);
         final TextView downvotesTextView = view.findViewById(R.id.downvotes_text_view);
         final ImageButton randomJokeButton = view.findViewById(R.id.random_joke_button);
-        final Button upvoteButton = view.findViewById(R.id.upvote_button);
-        final Button downvoteButton = view.findViewById(R.id.downvote_button);
-        final Button favouriteButton = view.findViewById(R.id.favourite_button);
-        final Button unfavouriteButton = view.findViewById(R.id.unfavourite_button);
+        final ImageButton upvoteButton = view.findViewById(R.id.upvote_button);
+        final ImageButton downvoteButton = view.findViewById(R.id.downvote_button);
+        final ImageButton favouriteButton = view.findViewById(R.id.favourite_button);
+        final ImageButton unfavouriteButton = view.findViewById(R.id.unfavourite_button);
 
         JokeRequestHandler jokeRequestHandler = new JokeRequestHandler(this.getContext(), randomJokeTextView, upvotesTextView, downvotesTextView);
         jokeRequestHandler.getRandomJoke();

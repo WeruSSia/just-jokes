@@ -79,7 +79,7 @@ class JokeRequestHandler {
         };
     }
 
-    void setRandomJokeButtonOnClickListener(ImageButton randomJokeButton, final Button favouriteButton, final Button unfavouriteButton) {
+    void setRandomJokeButtonOnClickListener(ImageButton randomJokeButton, final ImageButton favouriteButton, final ImageButton unfavouriteButton) {
         randomJokeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +95,7 @@ class JokeRequestHandler {
         });
     }
 
-    void setUpvoteButtonOnClickListener(Button upvoteButton) {
+    void setUpvoteButtonOnClickListener(ImageButton upvoteButton) {
         upvoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +104,7 @@ class JokeRequestHandler {
         });
     }
 
-    void setDownvoteButtonOnClickListener(Button downvoteButton) {
+    void setDownvoteButtonOnClickListener(ImageButton downvoteButton) {
         downvoteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,7 +113,7 @@ class JokeRequestHandler {
         });
     }
 
-    void setFavouriteButtonOnClickListener(final Button favouriteButton, final Button unfavouriteButton) {
+    void setFavouriteButtonOnClickListener(final ImageButton favouriteButton, final ImageButton unfavouriteButton) {
         favouriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,7 +132,7 @@ class JokeRequestHandler {
         });
     }
 
-    void setUnfavouriteButtonOnClickListener(final Button unfavouriteButton, final Button favouriteButton) {
+    void setUnfavouriteButtonOnClickListener(final ImageButton unfavouriteButton, final ImageButton favouriteButton) {
         unfavouriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

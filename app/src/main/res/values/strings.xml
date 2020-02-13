@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">just-jokes</string>
     <string name="random_joke">random joke</string>
-    <string name="upvotes">upvotes: %d</string>
-    <string name="downvotes">downvotes: %d</string>
+    <string name="upvotes">%d</string>
+    <string name="downvotes">%d</string>
     <string name="home_tab">Home</string>
     <string name="favourites_tab">Favourites</string>
     <string name="favourite_jokes_SP" translatable="false">favouriteJokesSP</string>

@@ -16,12 +16,17 @@ import java.util.Set;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-public class FavouritesFragment extends Fragment {
+public class FavouritesFragment extends Fragment{
 
 
     private Set<String> favouriteJokesIds = new HashSet<>();
     private ArrayList<JokeDto> favouriteJokeDtos = new ArrayList<>();
+    private ListView favouriteJokesListView;
+    private FavouriteJokesListViewAdapter adapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
 
     public FavouritesFragment() {
     }
@@ -35,16 +40,30 @@ public class FavouritesFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getActivity().getString(R.string.favourite_jokes_SP), Context.MODE_PRIVATE);
-        favouriteJokesIds = sharedPreferences.getStringSet(getActivity().getString(R.string.favourite_jokes_SP_key), new HashSet<String>());
+        favouriteJokesListView = view.findViewById(R.id.favourite_jokes_list_view);
+        adapter = new FavouriteJokesListViewAdapter(getContext(), favouriteJokeDtos);
 
+        setFavouritesListView();
+
+        swipeRefreshLayout = view.findViewById(R.id.swipeToRefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                favouriteJokeDtos.clear();
+                setFavouritesListView();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
+
+    private void setFavouritesListView(){
+        final SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getActivity().getString(R.string.favourite_jokes_SP), Context.MODE_PRIVATE);
+        favouriteJokesIds = sharedPreferences.getStringSet(getActivity().getString(R.string.favourite_jokes_SP_key), new HashSet<String>());
         JokeRequestHandler jokeRequestHandler = new JokeRequestHandler();
         jokeRequestHandler.getJokesList(favouriteJokesIds, new JokesCallback() {
             @Override
             public void onResponse(Set<JokeDto> jokes, int numberOfFailures) {
                 favouriteJokeDtos.addAll(jokes);
-                ListView favouriteJokesListView = view.findViewById(R.id.favourite_jokes_list_view);
-                FavouriteJokesListViewAdapter adapter = new FavouriteJokesListViewAdapter(getContext(), favouriteJokeDtos);
                 favouriteJokesListView.setAdapter(adapter);
                 if (numberOfFailures>0) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

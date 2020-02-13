@@ -5,9 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".FavouritesFragment">
 
-    <ListView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout android:id="@+id/swipeToRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ListView
         android:id="@+id/favourite_jokes_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </FrameLayout>

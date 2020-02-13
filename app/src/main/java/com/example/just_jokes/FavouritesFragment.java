@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -76,6 +78,12 @@ public class FavouritesFragment extends Fragment{
                     }
                     builder.create().show();
                 }
+                adapter.sort(new Comparator<JokeDto>() {
+                    @Override
+                    public int compare(JokeDto o1, JokeDto o2) {
+                        return o1.getContent().compareTo(o2.getContent());
+                    }
+                });
             }
         });
     }

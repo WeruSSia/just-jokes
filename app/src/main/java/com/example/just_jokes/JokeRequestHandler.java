@@ -3,13 +3,10 @@ package com.example.just_jokes;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -27,12 +24,11 @@ class JokeRequestHandler {
     private TextView randomJokeTextView;
     private TextView upvotesTextView;
     private TextView downvotesTextView;
-    private TextView favouriteJokeTextView;
     private SharedPreferences sharedPreferences;
     private String favouriteJokesSPKey;
     private Set<String> favouriteJokes;
 
-    public JokeRequestHandler(Context context, TextView randomJokeTextView, TextView upvotesTextView, TextView downvotesTextView) {
+    JokeRequestHandler(Context context, TextView randomJokeTextView, TextView upvotesTextView, TextView downvotesTextView) {
         setUpJokeService();
         this.context = context;
         this.randomJokeTextView = randomJokeTextView;
@@ -43,13 +39,7 @@ class JokeRequestHandler {
         favouriteJokes = new HashSet<>(sharedPreferences.getStringSet(favouriteJokesSPKey, new HashSet<String>()));
     }
 
-    public JokeRequestHandler(Context context, TextView favouriteJokeTextView) {
-        setUpJokeService();
-        this.context = context;
-        this.favouriteJokeTextView = favouriteJokeTextView;
-    }
-
-    public JokeRequestHandler() {
+    JokeRequestHandler() {
         setUpJokeService();
     }
 
@@ -117,6 +107,7 @@ class JokeRequestHandler {
         favouriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                favouriteJokes = new HashSet<>(sharedPreferences.getStringSet(favouriteJokesSPKey, new HashSet<String>()));
                 favouriteJokes.add(jokeId);
                 final SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putStringSet(favouriteJokesSPKey, favouriteJokes);
@@ -132,13 +123,13 @@ class JokeRequestHandler {
         });
     }
 
-    void setUnfavouriteButtonOnClickListener(final ImageButton unfavouriteButton, final ImageButton favouriteButton) {
+    void setUnfavouriteButtonOnClickListenerForHomepage(final ImageButton unfavouriteButton, final ImageButton favouriteButton) {
         unfavouriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 favouriteJokes.remove(jokeId);
                 final SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putStringSet(favouriteJokesSPKey,favouriteJokes);
+                editor.putStringSet(favouriteJokesSPKey, favouriteJokes);
                 editor.apply();
                 if (isJokeInFavourites()) {
                     favouriteButton.setVisibility(View.INVISIBLE);

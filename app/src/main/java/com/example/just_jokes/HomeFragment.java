@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -46,7 +45,7 @@ public class HomeFragment extends Fragment {
             favouriteButton.setVisibility(View.VISIBLE);
         }
         jokeRequestHandler.setFavouriteButtonOnClickListener(favouriteButton, unfavouriteButton);
-        jokeRequestHandler.setUnfavouriteButtonOnClickListener(unfavouriteButton, favouriteButton);
+        jokeRequestHandler.setUnfavouriteButtonOnClickListenerForHomepage(unfavouriteButton, favouriteButton);
         jokeRequestHandler.setRandomJokeButtonOnClickListener(randomJokeButton, favouriteButton, unfavouriteButton);
         jokeRequestHandler.setUpvoteButtonOnClickListener(upvoteButton);
         jokeRequestHandler.setDownvoteButtonOnClickListener(downvoteButton);

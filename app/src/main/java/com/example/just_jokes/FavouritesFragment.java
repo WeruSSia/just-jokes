@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,15 +19,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-public class FavouritesFragment extends Fragment{
-
+public class FavouritesFragment extends Fragment {
 
     private Set<String> favouriteJokesIds = new HashSet<>();
     private ArrayList<JokeDto> favouriteJokeDtos = new ArrayList<>();
     private ListView favouriteJokesListView;
     private FavouriteJokesListViewAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
-
 
     public FavouritesFragment() {
     }
@@ -43,36 +40,35 @@ public class FavouritesFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
 
         favouriteJokesListView = view.findViewById(R.id.favourite_jokes_list_view);
-        adapter = new FavouriteJokesListViewAdapter(getContext(), favouriteJokeDtos);
+        adapter = new FavouriteJokesListViewAdapter(getContext(), favouriteJokeDtos, this);
 
         setFavouritesListView();
 
         swipeRefreshLayout = view.findViewById(R.id.swipeToRefresh);
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorAccent));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                favouriteJokeDtos.clear();
-                setFavouritesListView();
-                swipeRefreshLayout.setRefreshing(false);
+                refresh();
             }
         });
     }
 
-    private void setFavouritesListView(){
+    private void setFavouritesListView() {
         final SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getActivity().getString(R.string.favourite_jokes_SP), Context.MODE_PRIVATE);
         favouriteJokesIds = sharedPreferences.getStringSet(getActivity().getString(R.string.favourite_jokes_SP_key), new HashSet<String>());
-        JokeRequestHandler jokeRequestHandler = new JokeRequestHandler();
+        final JokeRequestHandler jokeRequestHandler = new JokeRequestHandler();
         jokeRequestHandler.getJokesList(favouriteJokesIds, new JokesCallback() {
             @Override
             public void onResponse(Set<JokeDto> jokes, int numberOfFailures) {
                 favouriteJokeDtos.addAll(jokes);
                 favouriteJokesListView.setAdapter(adapter);
-                if (numberOfFailures>0) {
+                if (numberOfFailures > 0) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    if(numberOfFailures==favouriteJokesIds.size()){
+                    if (numberOfFailures == favouriteJokesIds.size()) {
                         builder.setTitle("Error");
                         builder.setMessage("Couldn't load favourite jokes");
-                    }else{
+                    } else {
                         builder.setTitle("Error");
                         builder.setMessage("Failed to load " + numberOfFailures + " jokes");
                     }
@@ -86,5 +82,11 @@ public class FavouritesFragment extends Fragment{
                 });
             }
         });
+    }
+
+    void refresh() {
+        favouriteJokeDtos.clear();
+        setFavouritesListView();
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

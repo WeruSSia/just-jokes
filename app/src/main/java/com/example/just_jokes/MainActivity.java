@@ -43,5 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.home);
+        tabLayout.getTabAt(1).setIcon(R.drawable.full_heart);
     }
 }

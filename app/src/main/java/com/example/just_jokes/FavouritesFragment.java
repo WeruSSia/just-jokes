@@ -89,4 +89,10 @@ public class FavouritesFragment extends Fragment {
         setFavouritesListView();
         swipeRefreshLayout.setRefreshing(false);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refresh();
+    }
 }

@@ -27,13 +27,17 @@ class JokeRequestHandler {
     private SharedPreferences sharedPreferences;
     private String favouriteJokesSPKey;
     private Set<String> favouriteJokes;
+    private ImageButton favouriteButton;
+    private ImageButton unfavouriteButton;
 
-    JokeRequestHandler(Context context, TextView randomJokeTextView, TextView upvotesTextView, TextView downvotesTextView) {
+    JokeRequestHandler(Context context, TextView randomJokeTextView, TextView upvotesTextView, TextView downvotesTextView, ImageButton favouriteButton, ImageButton unfavouriteButton) {
         setUpJokeService();
         this.context = context;
         this.randomJokeTextView = randomJokeTextView;
         this.upvotesTextView = upvotesTextView;
         this.downvotesTextView = downvotesTextView;
+        this.favouriteButton = favouriteButton;
+        this.unfavouriteButton = unfavouriteButton;
         sharedPreferences = context.getSharedPreferences(context.getString(R.string.favourite_jokes_SP), Context.MODE_PRIVATE);
         favouriteJokesSPKey = context.getString(R.string.favourite_jokes_SP_key);
         favouriteJokes = new HashSet<>(sharedPreferences.getStringSet(favouriteJokesSPKey, new HashSet<String>()));
@@ -60,6 +64,13 @@ class JokeRequestHandler {
                 upvotesTextView.setText(context.getString(R.string.upvotes_number, response.body().getUpvotes()));
                 downvotesTextView.setText(context.getString(R.string.downvotes_number, response.body().getDownvotes()));
                 jokeId = response.body().getId();
+                if (isJokeInFavourites()) {
+                    favouriteButton.setVisibility(View.INVISIBLE);
+                    unfavouriteButton.setVisibility(View.VISIBLE);
+                } else {
+                    unfavouriteButton.setVisibility(View.INVISIBLE);
+                    favouriteButton.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

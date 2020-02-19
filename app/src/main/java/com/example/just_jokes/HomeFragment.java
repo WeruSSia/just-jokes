@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment {
         final ImageButton favouriteButton = view.findViewById(R.id.favourite_button);
         final ImageButton unfavouriteButton = view.findViewById(R.id.unfavourite_button);
 
-        JokeRequestHandler jokeRequestHandler = new JokeRequestHandler(this.getContext(), randomJokeTextView, upvotesTextView, downvotesTextView);
+        JokeRequestHandler jokeRequestHandler = new JokeRequestHandler(this.getContext(), randomJokeTextView, upvotesTextView, downvotesTextView, favouriteButton, unfavouriteButton);
         jokeRequestHandler.getRandomJoke();
         if (jokeRequestHandler.isJokeInFavourites()) {
             favouriteButton.setVisibility(View.INVISIBLE);

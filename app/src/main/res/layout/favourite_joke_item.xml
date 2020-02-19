@@ -20,13 +20,13 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:background="@drawable/upvote"
-            android:contentDescription="thumb up" />
+            android:contentDescription="@string/upvotes" />
 
         <TextView
             android:id="@+id/favourite_upvotes"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:text="@string/upvotes" />
+            android:text="@string/upvotes_number" />
 
     </LinearLayout>
 
@@ -40,13 +40,13 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:background="@drawable/downvote"
-            android:contentDescription="thumb down" />
+            android:contentDescription="@string/downvotes" />
 
         <TextView
             android:id="@+id/favourite_downvotes"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:text="@string/downvotes" />
+            android:text="@string/downvotes_number" />
 
     </LinearLayout>
 
@@ -55,5 +55,5 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/full_heart"
-        android:contentDescription="heart" />
+        android:contentDescription="@string/unfavourite" />
 </LinearLayout>

@@ -57,8 +57,8 @@ class JokeRequestHandler {
             @Override
             public void onResponse(Call<JokeDto> call, Response<JokeDto> response) {
                 randomJokeTextView.setText(response.body().getContent());
-                upvotesTextView.setText(context.getString(R.string.upvotes, response.body().getUpvotes()));
-                downvotesTextView.setText(context.getString(R.string.downvotes, response.body().getDownvotes()));
+                upvotesTextView.setText(context.getString(R.string.upvotes_number, response.body().getUpvotes()));
+                downvotesTextView.setText(context.getString(R.string.downvotes_number, response.body().getDownvotes()));
                 jokeId = response.body().getId();
             }
 

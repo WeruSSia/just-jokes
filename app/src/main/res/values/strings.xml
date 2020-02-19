@@ -1,11 +1,17 @@
 <resources>
     <string name="app_name">just-jokes</string>
     <string name="random_joke">random joke</string>
-    <string name="upvotes">%d</string>
-    <string name="downvotes">%d</string>
+    <string name="upvotes_number">%d</string>
+    <string name="downvotes_number">%d</string>
     <string name="home_tab">Home</string>
     <string name="favourites_tab">Favourites</string>
     <string name="favourite_jokes_SP" translatable="false">favouriteJokesSP</string>
     <string name="favourite_jokes_SP_key" translatable="false">favouriteJokesSPKey</string>
+    <string name="favourite">favourite</string>
+    <string name="unfavourite">unfavourite</string>
+    <string name="upvote">upvote</string>
+    <string name="downvote">downvote</string>
+    <string name="upvotes">upvotes</string>
+    <string name="downvotes">downvotes</string>
 
 </resources>

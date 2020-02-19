@@ -39,8 +39,8 @@ public class FavouriteJokesListViewAdapter extends ArrayAdapter<JokeDto> {
         setUnfavouriteButtonOnClickListenerForFavourites(unfavouriteButton, jokeDto);
         TextView upvotesTextView = convertView.findViewById(R.id.favourite_upvotes);
         TextView downvotesTextView = convertView.findViewById(R.id.favourite_downvotes);
-        upvotesTextView.setText(getContext().getString(R.string.upvotes, jokeDto.getUpvotes()));
-        downvotesTextView.setText(getContext().getString(R.string.downvotes, jokeDto.getDownvotes()));
+        upvotesTextView.setText(getContext().getString(R.string.upvotes_number, jokeDto.getUpvotes()));
+        downvotesTextView.setText(getContext().getString(R.string.downvotes_number, jokeDto.getDownvotes()));
         return convertView;
     }
 

@@ -50,8 +50,9 @@ public class FavouriteJokesListViewAdapter extends ArrayAdapter<JokeDto> {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
-                alertDialogBuilder.setMessage("Are you sure you want to remove this joke from favourites?");
-                alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setTitle(R.string.confirm);
+                alertDialogBuilder.setMessage(R.string.removal_confirmation);
+                alertDialogBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         sharedPreferences = getContext().getSharedPreferences(getContext().getString(R.string.favourite_jokes_SP), Context.MODE_PRIVATE);
@@ -65,7 +66,7 @@ public class FavouriteJokesListViewAdapter extends ArrayAdapter<JokeDto> {
                         favouritesFragment.refresh();
                     }
                 });
-                alertDialogBuilder.setNegativeButton("no", null);
+                alertDialogBuilder.setNegativeButton(R.string.no, null);
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
             }

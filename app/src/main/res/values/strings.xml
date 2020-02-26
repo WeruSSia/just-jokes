@@ -13,5 +13,11 @@
     <string name="downvote">downvote</string>
     <string name="upvotes">upvotes</string>
     <string name="downvotes">downvotes</string>
-
+    <string name="removal_confirmation">Are you sure you want to remove this joke from favourites?</string>
+    <string name="confirm">Confirm</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="error">error</string>
+    <string name="complete_failure_error">Couldn\'t load favourite jokes</string>
+    <string name="partial_failure_error">Failed to load %d jokes</string>
 </resources>

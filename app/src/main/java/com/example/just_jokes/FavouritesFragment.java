@@ -66,11 +66,11 @@ public class FavouritesFragment extends Fragment {
                 if (numberOfFailures > 0) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     if (numberOfFailures == favouriteJokesIds.size()) {
-                        builder.setTitle("Error");
-                        builder.setMessage("Couldn't load favourite jokes");
+                        builder.setTitle(R.string.error);
+                        builder.setMessage(R.string.complete_failure_error);
                     } else {
-                        builder.setTitle("Error");
-                        builder.setMessage("Failed to load " + numberOfFailures + " jokes");
+                        builder.setTitle(R.string.error);
+                        builder.setMessage(getResources().getString(numberOfFailures, R.string.partial_failure_error));
                     }
                     builder.create().show();
                 }

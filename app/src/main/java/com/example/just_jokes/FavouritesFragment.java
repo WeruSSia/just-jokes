@@ -19,7 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-class FavouritesFragment extends Fragment {
+public class FavouritesFragment extends Fragment {
 
     private Set<String> favouriteJokesIds = new HashSet<>();
     private ArrayList<JokeDto> favouriteJokeDtos = new ArrayList<>();

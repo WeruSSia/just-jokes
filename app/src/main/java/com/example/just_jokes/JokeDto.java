@@ -1,5 +1,6 @@
 package com.example.just_jokes;
 
+@SuppressWarnings("unused")
 class JokeDto {
     private String id;
     private String content;

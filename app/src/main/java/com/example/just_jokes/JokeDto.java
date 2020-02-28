@@ -6,7 +6,7 @@ class JokeDto {
     private Integer upvotes;
     private Integer downvotes;
 
-    public String getId() {
+    String getId() {
         return id;
     }
 

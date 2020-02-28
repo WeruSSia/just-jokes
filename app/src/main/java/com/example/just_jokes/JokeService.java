@@ -15,10 +15,6 @@ interface JokeService {
 
     @Headers(apiKeyHeader)
     @GET("joke/")
-    Call<JokeDto> getRandomJoke(@Query("nsfw") boolean nsfw);
-
-    @Headers(apiKeyHeader)
-    @GET("joke/")
     Call<JokeDto> getRandomJoke();
 
     @Headers(apiKeyHeader)

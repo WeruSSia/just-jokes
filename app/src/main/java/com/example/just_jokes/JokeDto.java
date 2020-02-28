@@ -3,7 +3,6 @@ package com.example.just_jokes;
 class JokeDto {
     private String id;
     private String content;
-    private Boolean nsfw;
     private Integer upvotes;
     private Integer downvotes;
 
@@ -11,39 +10,15 @@ class JokeDto {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getContent() {
+    String getContent() {
         return content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Boolean getNsfw() {
-        return nsfw;
-    }
-
-    public void setNsfw(Boolean nsfw) {
-        this.nsfw = nsfw;
-    }
-
-    public Integer getUpvotes() {
+    Integer getUpvotes() {
         return upvotes;
     }
 
-    public void setUpvotes(Integer upvotes) {
-        this.upvotes = upvotes;
-    }
-
-    public Integer getDownvotes() {
+    Integer getDownvotes() {
         return downvotes;
-    }
-
-    public void setDownvotes(Integer downvotes) {
-        this.downvotes = downvotes;
     }
 }

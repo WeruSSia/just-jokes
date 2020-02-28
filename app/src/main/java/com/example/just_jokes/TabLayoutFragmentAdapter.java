@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-public class TabLayoutFragmentAdapter extends FragmentStatePagerAdapter {
+class TabLayoutFragmentAdapter extends FragmentStatePagerAdapter {
 
     private final String[] tabTitles;
 

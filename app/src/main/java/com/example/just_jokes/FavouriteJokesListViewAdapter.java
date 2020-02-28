@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class FavouriteJokesListViewAdapter extends ArrayAdapter<JokeDto> {
+class FavouriteJokesListViewAdapter extends ArrayAdapter<JokeDto> {
 
     private SharedPreferences sharedPreferences;
     private String favouriteJokesSPKey;

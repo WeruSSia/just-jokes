@@ -19,12 +19,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-public class FavouritesFragment extends Fragment {
+class FavouritesFragment extends Fragment {
 
     private Set<String> favouriteJokesIds = new HashSet<>();
     private ArrayList<JokeDto> favouriteJokeDtos = new ArrayList<>();
     private ListView favouriteJokesListView;
-    private FavouriteJokesListViewAdapter adapter;
+    private FavouriteJokesListViewAdapter favouriteJokesListViewAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
 
     public FavouritesFragment() {
@@ -40,7 +40,7 @@ public class FavouritesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         favouriteJokesListView = view.findViewById(R.id.favourite_jokes_list_view);
-        adapter = new FavouriteJokesListViewAdapter(getContext(), favouriteJokeDtos, this);
+        favouriteJokesListViewAdapter = new FavouriteJokesListViewAdapter(getContext(), favouriteJokeDtos, this);
 
         setFavouritesListView();
 
@@ -62,7 +62,7 @@ public class FavouritesFragment extends Fragment {
             @Override
             public void onResponse(Set<JokeDto> jokes, int numberOfFailures) {
                 favouriteJokeDtos.addAll(jokes);
-                favouriteJokesListView.setAdapter(adapter);
+                favouriteJokesListView.setAdapter(favouriteJokesListViewAdapter);
                 if (numberOfFailures > 0) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     if (numberOfFailures == favouriteJokesIds.size()) {
@@ -74,7 +74,7 @@ public class FavouritesFragment extends Fragment {
                     }
                     builder.create().show();
                 }
-                adapter.sort(new Comparator<JokeDto>() {
+                favouriteJokesListViewAdapter.sort(new Comparator<JokeDto>() {
                     @Override
                     public int compare(JokeDto o1, JokeDto o2) {
                         return o1.getContent().compareTo(o2.getContent());

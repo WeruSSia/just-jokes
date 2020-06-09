@@ -1,19 +1,25 @@
 # Random jokes generator
 An application that allows to generate a random joke, upvote/downvote it and add it to favourites.
 
-##Usage example
+## Usage example
+
+### Generating new joke
 A big emoticon on the homepage is a button used to generate new random joke.
 ![](app/src/test/resources/random_joke.png)
 
+### Upvoting and downvoting
 When upvote or downvote button is clicked, the counter next to it increases.
 ![](app/src/test/resources/upvoted_joke.png)
 
+### Adding to favourites
 When favourite button is clicked, the heart icon changes from empty to filled.
 ![](app/src/test/resources/favourited_joke.png)
 
+## Favourites tab
 Favourited jokes are stored in favourites tab.
 ![](app/src/test/resources/favourites.png)
 
+### Removing joke from favourites
 From here it is possible to remove the joke from favourites. After clicking the filled heart icon in order to do it, the app will ask for a confirmation.
 ![](app/src/test/resources/unfavourite_confirmation.png)
 
